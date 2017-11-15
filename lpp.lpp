@@ -3,14 +3,41 @@
 %}
 %option noyywrap yylineno
 
+N [0-9]+
 %%
-[a-zA-Z0-9_]+		{ yylval.s = new string(yytext); return SYM;}
-[ \t\r\n]+			{}
+#[^\n]*							{}	// line comment
+
+0x[0-9a-fA-F]+					{ yylval.d = strtol(&yytext[2],NULL,0x10);
+									return NUM; }
+
+{N}(\.{N})?([eE][\+\-]?{N})?	{ yylval.d = atof(yytext); return NUM; }
+
+pi								{ yylval.d = M_PI; return NUM; }
+e								{ yylval.d = M_E;  return NUM; }
+
+\+								{return ADD;}
+\-								{return SUB;}
+\*								{return MUL;}
+\/								{return DIV;}
+\^								{return POW;}
+
+\(								{return LP;}
+\)								{return RP;}
+
+sin								{return SIN;}
+
+[_a-zA-Z_][_a-zA-Z0-9]*			{ yylval.s = new string(yytext); return SYM;}
+
+[ \t\r\n]+						{}						// drop spaces
+.								{yyerror("lexer");}		// 
 %%
 
 int main() {
-	char *cmdline = readline("> ");
-//	printf("cmdline was: [%s]\n",cmdline);
-	yy_scan_string(cmdline); yyparse();
-	free(cmdline);
+	cout << setprecision(15);
+	for (;;) {
+		char *cmdline = readline("> ");
+		if (cmdline && *cmdline) {
+			yy_scan_string(cmdline); yyparse(); }
+		free(cmdline);
+	}
 	return 0; }

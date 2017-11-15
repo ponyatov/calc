@@ -22,7 +22,7 @@ https://github.com/ponyatov/calc/releases/latest
 * GNU `g++` (комилятор С++)
 * flex
 * bison
-* libreadline (команданая строка с редактированием)
+* lib/readline (команданая строка с редактированием)
 
 Скачать .zip архив с исходным кодом с https://github.com/ponyatov/calc/releases/latest
 * или установить утилиту `git` c http://git-scm.com/ и
@@ -42,3 +42,42 @@ PATH = C:\MinGW\bin;C:\MinGW\MSys\bin;
 $> cd calc
 $> mingw32-make
 ```
+
+## Использование
+
+### выход
+
+Ctrl-C
+
+Ctrl-D в Linux, Ctrl-Z в Windows (EOF, конец файла)
+
+
+### инфиксные выражения
+
+```
+-01++2.4*4e-5^(6/0xDeadBeef)
+```
+
+### hex/bin
+
+```
+0xDeadBeef
+0b1101
+```
+
+### константы
+
+```
+pi
+e
+```
+
+### переменные
+
+в Pro версии $9.99
+
+### стандартные функции
+
+sin(x)
+
+остальные дописать самостоятельно

@@ -2,13 +2,18 @@
 #define _H_HPP
 
 #include <iostream>
+#include <iomanip>
 #include <cstdlib>
-using namespace std;
 
-#include <readline/readline.h>
+#define _USE_MATH_DEFINES
+#include <cmath>
+
+#include <readline/readline.h>		// lib/readline edit in command line
 #include <readline/history.h>
 
-extern int yylex();
+using namespace std;
+
+extern int yylex();					// flex/bison parser interface
 extern int yylineno;
 extern char* yytext;
 extern int yyparse();

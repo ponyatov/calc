@@ -2,12 +2,39 @@
 #include "hpp.hpp"
 %}
 %defines %union { double d; string *s; }
-%token <s> SYM
+
+%token <d> NUM				// number
+%token <s> SYM				// symbol (variable name)
+%token ADD SUB MUL DIV POW	// + - * / ^
+%token LP RP				// ( )
+%token SIN					// sin()
+%type <d> ex
+
+%left ADD SUB				// operators priority (next upper)
+%left MUL DIV
+%right POW
+%left PFX
 
 %%
-REPL : | REPL ex
-ex : SYM { cout << "<"<<*$1<<">" << endl; } ;
+REPL : | REPL ex		{ cout << $2 << endl; } ;
+
+ex : NUM				{ $$ = $1; }			// number
+
+ex : LP ex RP			{ $$ = $2; }			// ( parens )
+
+ex : ADD ex %prec PFX	{ $$ = + $2; } ;		// +A
+ex : SUB ex %prec PFX	{ $$ = - $2; } ;		// -A
+
+ex : ex ADD ex			{ $$ = $1 + $3; } ;		// A+B
+ex : ex SUB ex			{ $$ = $1 - $3; } ;
+ex : ex MUL ex			{ $$ = $1 * $3; } ;
+ex : ex DIV ex			{ $$ = $1 / $3; } ;
+ex : ex POW ex			{ $$ = pow($1,$3); } ;
+
+ex : SIN LP ex RP		{ $$ = sin($3); } ;		// sin(x)
 %%
 
-#define YYERR "\n\n"<<yylineno<<":"<<msg<<"["<<yytext<<"]\n\n"
-void yyerror(string msg) { cout<<YYERR; cerr<<YYERR; exit(-1); }
+// error callback
+
+#define YYERR "error: line #"<<yylineno<<":"<<msg<<"["<<yytext<<"]\n"
+void yyerror(string msg) { cerr<<YYERR; }
