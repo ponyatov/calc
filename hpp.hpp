@@ -5,6 +5,9 @@
 #include <cstdlib>
 using namespace std;
 
+#include <readline/readline.h>
+#include <readline/history.h>
+
 extern int yylex();
 extern int yylineno;
 extern char* yytext;

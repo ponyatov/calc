@@ -20,6 +20,9 @@ https://github.com/ponyatov/calc/releases/latest
 Нужно установить пакеты:
 * `make` (утилита сборки, см. `Makefile`)
 * GNU `g++` (комилятор С++)
+* flex
+* bison
+* libreadline (команданая строка с редактированием)
 
 Скачать .zip архив с исходным кодом с https://github.com/ponyatov/calc/releases/latest
 * или установить утилиту `git` c http://git-scm.com/ и

@@ -2,4 +2,15 @@
 #include "hpp.hpp"
 %}
 %option noyywrap yylineno
+
 %%
+[a-zA-Z0-9_]+		{ yylval.s = new string(yytext); return SYM;}
+[ \t\r\n]+			{}
+%%
+
+int main() {
+	char *cmdline = readline("> ");
+//	printf("cmdline was: [%s]\n",cmdline);
+	yy_scan_string(cmdline); yyparse();
+	free(cmdline);
+	return 0; }

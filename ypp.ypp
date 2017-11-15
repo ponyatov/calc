@@ -3,6 +3,11 @@
 %}
 %defines %union { double d; string *s; }
 %token <s> SYM
+
 %%
 REPL : | REPL ex
-ex : SYM { cout << *$1 << endl; } ;
+ex : SYM { cout << "<"<<*$1<<">" << endl; } ;
+%%
+
+#define YYERR "\n\n"<<yylineno<<":"<<msg<<"["<<yytext<<"]\n\n"
+void yyerror(string msg) { cout<<YYERR; cerr<<YYERR; exit(-1); }
