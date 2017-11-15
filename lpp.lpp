@@ -37,6 +37,7 @@ int main() {
 	for (;;) {
 		char *cmdline = readline("> ");
 		if (cmdline && *cmdline) {
+			add_history(cmdline);
 			yy_scan_string(cmdline); yyparse(); }
 		free(cmdline);
 	}
