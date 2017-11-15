@@ -5,11 +5,12 @@ endif
 ./%.dll: C:/MinGW/bin/%.dll
 	cp $< $@
 
-exec: zip ./calc.exe $(DLL)
+exec: ./calc.exe $(DLL) zip
 	./calc.exe
 C = ypp.tab.cpp lex.yy.c
 H = ypp.tab.hpp hpp.hpp
 L += -lreadline
+
 ./calc.exe: $(C) $(H) $(DLL)
 	$(CXX) -o $@ $(C) $(L)
 ypp.tab.cpp ypp.tab.hpp: ypp.ypp
