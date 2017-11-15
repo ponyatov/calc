@@ -1,3 +1,7 @@
 *~
 *.swp
 .*.md.html
+ypp.tab.?pp
+lex.yy.c
+*.exe
+*.log
