@@ -48,13 +48,13 @@ TAB completion: набирая начало имени файла можно н�
 полное имя в командную строку):
 
 ```
-$> wget -c http://ftp.gnu.org/gnu/readline/readline-7.0.tar.gz
-$> tar zx < readline-7.0.tar.gz
-$> cd readline-7.0 ; mkdir build ; cd build
+$> wget -c http://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz
+$> tar zx < readline-5.2.tar.gz
+$> cd readline-5.2 ; mkdir build ; cd build
 $> pwd
 /home/dmitry/readline-6.3/build
-$> ../configure --disable-shared
-$> make install
+$> ../configure --disable-shared && make && make install
+$> exit
 ```
 
 Запустить сборку калькулятора
