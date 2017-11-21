@@ -13,9 +13,10 @@
 
 using namespace std;
 
-extern int yylex();					// flex/bison parser interface
+extern int yylex();					
 extern int yylineno;
 extern char* yytext;
+//#include "lex.yy.h"					// flex/bison parser interface
 extern int yyparse();
 extern void yyerror(string);
 #include "ypp.tab.hpp"

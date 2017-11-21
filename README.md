@@ -24,14 +24,6 @@ https://github.com/ponyatov/calc/releases/latest
 * bison
 * lib/readline (команданая строка с редактированием)
 
-Скачать .zip архив с исходным кодом с https://github.com/ponyatov/calc/releases/latest
-* или установить утилиту `git` c http://git-scm.com/ и
-* получить свежий проект с GitHub:
-```
-$> git clone https://github.com/ponyatov/calc.git
-$> cd calc
-```
-
 Прописать установленный MinGW в переменную
 ```
 PATH = C:\MinGW\bin;C:\MinGW\MSys\bin;
@@ -42,22 +34,35 @@ libreadline не входит в пакет поставки MinGW, поэтом
 таскать кучу .dll, а иметь один calc.exe. 
 
 Для сборки нужна установка MinGW + MSYS (UNIX-среда). Запустите UNIX-консоль
-командой `C:\MinGW\msys\1.0\msys.bat`. Для начала скачайте и распакуйте архив
+командой `C:\MinGW\msys\1.0\msys.bat`. Обратите внимание что команды должны
+вводиться в msys-консоли, а не windows cmd. Скачайте и распакуйте архиd
 библиотеки и распакуйте его (при вводе текста не забудьте что работает
 TAB completion: набирая начало имени файла можно нажать TAB и получить его
-полное имя в командную строку):
+полное имя в командную строку, но проще использовать копирование/вставку):
 
 ```
-$> wget -c http://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz
-$> tar zx < readline-5.2.tar.gz
-$> cd readline-5.2 ; mkdir build ; cd build
-$> pwd
-/home/dmitry/readline-6.3/build
-$> ../configure --disable-shared && make && make install
-$> exit
+msys/~> wget -c http://ftp.gnu.org/gnu/termcap/termcap-1.3.tar.gz
+msys/~> tar zx < termcap-1.3.tar.gz
+msys/~> cd termcap-1.3 ; mkdir build ; cd build
+msys/~> ../configure --prefix=/mingw --disable-shared && make && make install
+
+msys/~> wget -c http://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz
+msys/~> tar zx < readline-5.2.tar.gz
+msys/~> cd readline-5.2 ; mkdir build ; cd build
+msys/~> ../configure --prefix=/mingw --disable-shared && make && make install
+
+msys/~> exit
 ```
 
-Запустить сборку калькулятора
+Скачать .zip архив с исходным кодом с https://github.com/ponyatov/calc/releases/latest
+* или установить утилиту `git` c http://git-scm.com/ и
+* получить свежий проект с GitHub:
+```
+$> git clone https://github.com/ponyatov/calc.git
+$> cd calc
+```
+
+Запустить сборку калькулятора в коммандной строке windows
 ```
 $> cd calc
 $> mingw32-make

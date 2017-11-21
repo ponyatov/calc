@@ -1,23 +1,21 @@
-	DLL =
-ifeq ($(OS),Windows_NT)
-	DLL = ./readline5.dll ./history5.dll
-endif
-./%.dll: C:/MinGW/bin/%.dll
-	cp $< $@
-
-exec: ./calc.exe $(DLL) zip
+exec: ./calc.exe
 	./calc.exe
-C = ypp.tab.cpp lex.yy.c
-H = ypp.tab.hpp hpp.hpp
+C = cpp.cpp ypp.tab.cpp lex.yy.c
+H = hpp.hpp ypp.tab.hpp lex.yy.h 
 L += -lreadline
 
-./calc.exe: $(C) $(H) $(DLL)
-	$(CXX) -o $@ $(C) $(L)
+ifneq (,$(filter Windows_NT win32,$(OS)))
+	# build standalone static .exe only for windows
+	# linux build will use your system .so libraries
+	L += -ltermcap
+	CXXFLAGS += -static
+#	-static-libgcc -static-libstdc++
+endif
+
+./calc.exe: $(C) $(H) Makefile
+	@echo build for $(OS)
+	$(CXX) $(CXXFLAGS) -o $@ $(C) $(L) && du -h $@
 ypp.tab.cpp ypp.tab.hpp: ypp.ypp
 	bison $<
-lex.yy.c: lpp.lpp
+lex.yy.c lex.yy.h: lpp.lpp
 	flex $<
-
-zip: calc.zip
-calc.zip: ./calc.exe $(DLL) README.md
-	zip $@ $?

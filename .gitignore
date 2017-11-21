@@ -2,7 +2,7 @@
 *.swp
 .*.md.html
 ypp.tab.?pp
-lex.yy.c
+lex.yy.?
 *.exe
 *.dll
 *.log

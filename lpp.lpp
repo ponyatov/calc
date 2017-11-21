@@ -1,6 +1,7 @@
 %{
 #include "hpp.hpp"
 %}
+%option header-file="lex.yy.h"
 %option noyywrap yylineno
 
 N [0-9]+
@@ -29,7 +30,7 @@ sin								{return SIN;}
 [_a-zA-Z_][_a-zA-Z0-9]*			{ yylval.s = new string(yytext); return SYM;}
 
 [ \t\r\n]+						{}						// drop spaces
-.								{yyerror("lexer");}		// 
+.								{yyerror("lexer");}		// undetected char
 %%
 
 int main() {
