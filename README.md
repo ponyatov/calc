@@ -46,6 +46,8 @@ msys/~> tar zx < termcap-1.3.tar.gz
 msys/~> cd termcap-1.3 ; mkdir build ; cd build
 msys/~> ../configure --prefix=/mingw --disable-shared && make && make install
 
+msys/~> cd ~
+
 msys/~> wget -c http://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz
 msys/~> tar zx < readline-5.2.tar.gz
 msys/~> cd readline-5.2 ; mkdir build ; cd build
