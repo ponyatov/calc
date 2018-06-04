@@ -1,8 +1,8 @@
 *~
 *.swp
 .*.md.html
-ypp.tab.?pp
-lex.yy.?
+lexer.cpp
+parser.?pp
 *.exe
 *.dll
 *.log

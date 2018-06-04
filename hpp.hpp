@@ -19,6 +19,6 @@ extern char* yytext;
 //#include "lex.yy.h"					// flex/bison parser interface
 extern int yyparse();
 extern void yyerror(string);
-#include "ypp.tab.hpp"
+#include "parser.hpp"
 
 #endif // _H_HPP

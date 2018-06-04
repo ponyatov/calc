@@ -1,1 +1,1 @@
-@gvim -p ypp.ypp lpp.lpp hpp.hpp cpp.cpp Makefile 
+@gvim -p log.log src.src ypp.ypp lpp.lpp hpp.hpp cpp.cpp Makefile 

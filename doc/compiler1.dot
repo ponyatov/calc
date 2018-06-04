@@ -1,0 +1,41 @@
+digraph compiler {
+    rankdir=LR;
+    
+subgraph cluster_F {
+    label="compiler frontend";
+    
+src [label="source code"];
+src -> lexer [label="single\lcharacters"];
+lexer -> parser [label="tokens"];
+parser -> sems [label="program\ltree/AST"];
+sems [ label="semantic\lanalyzer"];
+}
+
+subgraph cluster_B {
+    label="compiler backend";
+    iroptimizer -> codegen [label="trigraphs"];
+    codegen -> lowoptimizer ;
+    lowoptimizer -> obj [label="machine\lcode"];
+    obj [label="object\lfile"];
+    iroptimizer [label="IR optimizer"];
+    lowoptimizer [label="low-level\loptimizer"];
+    codegen [label="code\lgenerator"];
+}
+
+front -> back [label="IR: intermediate\lrepresentation"];
+front [label="compiler frontend",shape=box];
+back [label="compiler backend",shape=box];
+
+subgraph cluster_L {
+    label="binutils";
+    obj [label="object\lfile"];
+    obj -> ld [label="machine\lcode"];
+    libc -> ld;
+    libreadline -> ld;
+    "..." -> ld;
+    ld -> ".dll";
+    ld -> ".exe";
+    ld [label="linker"];
+}
+
+}

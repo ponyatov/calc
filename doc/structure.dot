@@ -1,0 +1,35 @@
+digraph skelex {
+
+rankdir=TB;
+
+ypp [label="ypp.ypp"];
+lpp [label="lpp.lpp"];
+hpp [label="hpp.hpp"];
+cpp [label="cpp.cpp"];
+
+exe [label="calc.exe"];
+
+lexer [label="lexer.cpp"];
+parser [label="parser.cpp"];
+def [label="parser.hpp"];
+
+hpp -> ypp [label="#include"];
+hpp -> lpp [label="#include"];
+hpp -> cpp [label="#include"];
+
+ypp -> def ;
+def -> lpp [label="token\ldefs"];
+
+lpp -> lexer [label="flex"];
+lexer -> exe [label="g++"];
+ypp -> parser [label="bison"];
+parser -> exe [label="g++"];
+cpp -> exe [label="g++"];
+
+src [label="src.src"];
+log [label="log.log"];
+src -> exe -> log;
+
+{ rank=same; src; log; exe}
+
+}
