@@ -6,6 +6,9 @@
 
 github: https://github.com/ponyatov/calc
 
+### full manual on writing this tool from scratch
+look here https://ponyatov.quora.com/Text-data-formats-Parsing-with-flex-bison-and-C
+
 ## Установка
 
 ### Готовая бинарная сборка для Windows
